@@ -10,22 +10,19 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 
+@Entity(name = "Conta")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
-@EqualsAndHashCode
-@Entity
-@Table(name = "conta")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Conta {
 
     @Id
     private String id;
 
-    @Column(name = "saldo")
     private BigDecimal saldo;
 }
