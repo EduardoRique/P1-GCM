@@ -51,11 +51,13 @@ public class ContaService {
         Optional<Conta> contaOptOrigem = contaRepository.findById(idContaOrigem);
         Optional<Conta> contaOptDestino = contaRepository.findById(idContaDestino);
         if(contaOptOrigem.isPresent() && contaOptDestino.isPresent()) {
-            this.debito(contaOptOrigem.get().getId(), valor);
-            this.credito(contaOptDestino.get().getId(), valor);
-            contaRepository.save(contaOptOrigem.get());
-            contaRepository.save(contaOptDestino.get());
-            return true;
+            if(contaOptOrigem.get().getSaldo().compareTo(new BigDecimal(valor)) != -1) {
+                contaOptOrigem.get().setSaldo(contaOptOrigem.get().getSaldo().subtract(new BigDecimal(valor)));
+                contaOptDestino.get().setSaldo(contaOptDestino.get().getSaldo().add(new BigDecimal(valor)));
+                contaRepository.save(contaOptOrigem.get());
+                contaRepository.save(contaOptDestino.get());
+                return true;
+            }
         }
         return false;
     }
