@@ -40,9 +40,11 @@ public class ContaService {
     public boolean debito(String id, double valor) {
         Optional<Conta> contaOpt = contaRepository.findById(id);
         if(contaOpt.isPresent()) {
-            contaOpt.get().setSaldo(contaOpt.get().getSaldo().subtract(new BigDecimal(valor)));
-            contaRepository.save(contaOpt.get());
-            return true;
+            if(contaOpt.get().getSaldo().compareTo(new BigDecimal(valor)) > -1) {
+                contaOpt.get().setSaldo(contaOpt.get().getSaldo().subtract(new BigDecimal(valor)));
+                contaRepository.save(contaOpt.get());
+                return true;
+            }
         }
         return false;
     }
@@ -51,7 +53,7 @@ public class ContaService {
         Optional<Conta> contaOptOrigem = contaRepository.findById(idContaOrigem);
         Optional<Conta> contaOptDestino = contaRepository.findById(idContaDestino);
         if(contaOptOrigem.isPresent() && contaOptDestino.isPresent()) {
-            if(contaOptOrigem.get().getSaldo().compareTo(new BigDecimal(valor)) != -1) {
+            if(contaOptOrigem.get().getSaldo().compareTo(new BigDecimal(valor)) > -1) {
                 contaOptOrigem.get().setSaldo(contaOptOrigem.get().getSaldo().subtract(new BigDecimal(valor)));
                 contaOptDestino.get().setSaldo(contaOptDestino.get().getSaldo().add(new BigDecimal(valor)));
                 contaRepository.save(contaOptOrigem.get());
