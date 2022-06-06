@@ -12,17 +12,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
-@Entity(name = "Conta")
+@Entity(name = "ContaCorrente")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Conta {
+public class ContaCorrente {
 
     @Id
     private String id;
 
+    @Column
     private BigDecimal saldo;
 }
