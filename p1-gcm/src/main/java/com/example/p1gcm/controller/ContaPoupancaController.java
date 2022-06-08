@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 @Service
 @RequestMapping("/contaPoupanca")
-public class ContaPoupancaController implements  ContaController{
+public class ContaPoupancaController implements ContaController {
 
     @Inject
     ContaPoupancaService contaPoupancaService;
