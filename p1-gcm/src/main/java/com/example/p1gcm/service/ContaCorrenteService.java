@@ -29,7 +29,7 @@ public class ContaCorrenteService implements ContaService{
 
     public boolean credito(String id, double valor) {
         Optional<ContaCorrente> contaOpt = contaCorrenteRepository.findById(id);
-        if(contaOpt.isPresent()) {
+        if(contaOpt.isPresent() && valor > 0) {
             contaOpt.get().setSaldo(contaOpt.get().getSaldo().add(new BigDecimal(valor)));
             contaCorrenteRepository.save(contaOpt.get());
             return true;
@@ -39,7 +39,7 @@ public class ContaCorrenteService implements ContaService{
 
     public boolean debito(String id, double valor) {
         Optional<ContaCorrente> contaOpt = contaCorrenteRepository.findById(id);
-        if(contaOpt.isPresent()) {
+        if(contaOpt.isPresent() && valor > 0 && contaOpt.get().getSaldo().subtract(new BigDecimal(valor)).compareTo(new BigDecimal(-1000)) > -1) {
             contaOpt.get().setSaldo(contaOpt.get().getSaldo().subtract(new BigDecimal(valor)));
             contaCorrenteRepository.save(contaOpt.get());
             return true;
@@ -50,7 +50,7 @@ public class ContaCorrenteService implements ContaService{
     public boolean transferir(String idContaOrigem, String idContaDestino, double valor) {
         Optional<ContaCorrente> contaOptOrigem = contaCorrenteRepository.findById(idContaOrigem);
         Optional<ContaCorrente> contaOptDestino = contaCorrenteRepository.findById(idContaDestino);
-        if(contaOptOrigem.isPresent() && contaOptDestino.isPresent()) {
+        if(contaOptOrigem.isPresent() && contaOptDestino.isPresent() && valor > 0 && contaOptOrigem.get().getSaldo().subtract(new BigDecimal(valor)).compareTo(new BigDecimal(-1000)) > -1) {
             if(contaOptOrigem.get().getSaldo().compareTo(new BigDecimal(valor)) != -1) {
                 contaOptOrigem.get().setSaldo(contaOptOrigem.get().getSaldo().subtract(new BigDecimal(valor)));
                 contaOptDestino.get().setSaldo(contaOptDestino.get().getSaldo().add(new BigDecimal(valor)));

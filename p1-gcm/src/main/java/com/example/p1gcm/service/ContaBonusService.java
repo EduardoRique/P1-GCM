@@ -29,20 +29,21 @@ public class ContaBonusService implements ContaService{
 
     public boolean credito(String id, double valor) {
         Optional<ContaBonus> contaOpt = contaBonusRepository.findById(id);
-        if(contaOpt.isPresent()) {
+        if(contaOpt.isPresent() && valor > 0) {
             if(valor >= 100) {
                 contaOpt.get().setPontuacao(contaOpt.get().getPontuacao()+1);
             }
             contaOpt.get().setSaldo(contaOpt.get().getSaldo().add(new BigDecimal(valor)));
             contaBonusRepository.save(contaOpt.get());
             return true;
+
         }
         return false;
     }
 
     public boolean debito(String id, double valor) {
         Optional<ContaBonus> contaOpt = contaBonusRepository.findById(id);
-        if(contaOpt.isPresent()) {
+        if(contaOpt.isPresent() && valor > 0 && contaOpt.get().getSaldo().subtract(new BigDecimal(valor)).compareTo(new BigDecimal(-1000)) > -1) {
             contaOpt.get().setSaldo(contaOpt.get().getSaldo().subtract(new BigDecimal(valor)));
             contaBonusRepository.save(contaOpt.get());
             return true;
@@ -53,7 +54,7 @@ public class ContaBonusService implements ContaService{
     public boolean transferir(String idContaOrigem, String idContaDestino, double valor) {
         Optional<ContaBonus> contaOptOrigem = contaBonusRepository.findById(idContaOrigem);
         Optional<ContaBonus> contaOptDestino = contaBonusRepository.findById(idContaDestino);
-        if(contaOptOrigem.isPresent() && contaOptDestino.isPresent()) {
+        if(contaOptOrigem.isPresent() && contaOptDestino.isPresent() && valor > 0 && contaOptOrigem.get().getSaldo().subtract(new BigDecimal(valor)).compareTo(new BigDecimal(-1000)) > -1) {
             if(valor >= 200) {
                 contaOptDestino.get().setPontuacao(contaOptDestino.get().getPontuacao()+1);
             }
