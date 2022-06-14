@@ -54,7 +54,7 @@ public class ContaBonusService implements ContaService{
         Optional<ContaBonus> contaOptOrigem = contaBonusRepository.findById(idContaOrigem);
         Optional<ContaBonus> contaOptDestino = contaBonusRepository.findById(idContaDestino);
         if(contaOptOrigem.isPresent() && contaOptDestino.isPresent()) {
-            if(valor >= 200) {
+            if(valor >= 150) {
                 contaOptDestino.get().setPontuacao(contaOptDestino.get().getPontuacao()+1);
             }
             if(contaOptOrigem.get().getSaldo().compareTo(new BigDecimal(valor)) != -1) {
