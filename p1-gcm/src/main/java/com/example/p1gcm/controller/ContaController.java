@@ -23,10 +23,10 @@ public class ContaController {
     @Inject
     ContaService contaService;
 
-    @ApiOperation(value = "Cria uma nova conta com saldo 0 (zero)")
+    @ApiOperation(value = "Cria uma nova conta com saldo inicial")
     @PostMapping("/cadastraConta")
-    public ResponseEntity<Boolean> cadastrarConta(String id) {
-        return ResponseEntity.ok(contaService.cadastrarConta(id));
+    public ResponseEntity<Boolean> cadastrarConta(String id, double saldoInicial) {
+        return ResponseEntity.ok(contaService.cadastrarConta(id, saldoInicial));
     }
 
     @ApiOperation(value = "Retorna o saldo de uma conta")

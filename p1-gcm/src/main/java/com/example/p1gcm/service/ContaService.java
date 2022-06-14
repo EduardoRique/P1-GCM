@@ -14,8 +14,8 @@ public class ContaService {
 
     private final ContaRepository contaRepository;
 
-    public boolean cadastrarConta(String id) {
-        contaRepository.save(new Conta(id, new BigDecimal(0)));
+    public boolean cadastrarConta(String id, double saldoInicial) {
+        contaRepository.save(new Conta(id, new BigDecimal(saldoInicial)));
         return true;
     }
 
