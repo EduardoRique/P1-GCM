@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface ContaService {
 
-    public boolean cadastrarConta(String id);
+    public boolean cadastrarConta(String id, double saldoInicial);
 
     public BigDecimal consultarSaldo(String id);
 

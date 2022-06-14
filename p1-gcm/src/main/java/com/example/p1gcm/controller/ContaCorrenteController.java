@@ -24,7 +24,7 @@ public class ContaCorrenteController implements  ContaController{
     @ApiOperation(value = "Cria uma nova conta corrente com saldo 0 (zero)")
     @PostMapping("/cadastraConta")
     public ResponseEntity<Boolean> cadastrarConta(String id) {
-        return ResponseEntity.ok(contaCorrenteService.cadastrarConta(id));
+        return ResponseEntity.ok(contaCorrenteService.cadastrarConta(id, 0));
     }
 
     @ApiOperation(value = "Retorna o saldo de uma conta")

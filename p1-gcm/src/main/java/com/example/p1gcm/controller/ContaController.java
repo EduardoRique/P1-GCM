@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 
 public interface ContaController {
 
-    public ResponseEntity<Boolean> cadastrarConta(String id);
-
     public ResponseEntity<BigDecimal> consultarSaldo(String id);
 
     public ResponseEntity<Boolean> credito(String id, double valor);

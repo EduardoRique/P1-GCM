@@ -21,10 +21,10 @@ public class ContaPoupancaController implements ContaController {
     @Inject
     ContaPoupancaService contaPoupancaService;
 
-    @ApiOperation(value = "Cria uma nova conta corrente com saldo 0 (zero)")
+    @ApiOperation(value = "Cria uma nova conta corrente com saldo")
     @PostMapping("/cadastraConta")
-    public ResponseEntity<Boolean> cadastrarConta(String id) {
-        return ResponseEntity.ok(contaPoupancaService.cadastrarConta(id));
+    public ResponseEntity<Boolean> cadastrarConta(String id, double saldoInicial) {
+        return ResponseEntity.ok(contaPoupancaService.cadastrarConta(id, saldoInicial));
     }
 
     @ApiOperation(value = "Retorna o saldo de uma conta")

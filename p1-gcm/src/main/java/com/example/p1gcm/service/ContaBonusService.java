@@ -14,8 +14,8 @@ public class ContaBonusService implements ContaService{
 
     private final ContaBonusRepository contaBonusRepository;
 
-    public boolean cadastrarConta(String id) {
-        contaBonusRepository.save(new ContaBonus(id, new BigDecimal(0), 10));
+    public boolean cadastrarConta(String id, double saldoInicial) {
+        contaBonusRepository.save(new ContaBonus(id, new BigDecimal(saldoInicial), 10));
         return true;
     }
 

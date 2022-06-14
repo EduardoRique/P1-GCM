@@ -14,9 +14,12 @@ public class ContaPoupancaService implements ContaService{
 
     private final ContaPoupancaRepository contaPoupancaRepository;
 
-    public boolean cadastrarConta(String id) {
-        contaPoupancaRepository.save(new ContaPoupanca(id, new BigDecimal(0)));
-        return true;
+    public boolean cadastrarConta(String id, double valorInicial) {
+        if(valorInicial >= 0) {
+            contaPoupancaRepository.save(new ContaPoupanca(id, new BigDecimal(valorInicial)));
+            return true;
+        }
+        return false;
     }
 
     public BigDecimal consultarSaldo(String id) {

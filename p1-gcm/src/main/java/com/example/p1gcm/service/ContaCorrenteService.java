@@ -14,8 +14,8 @@ public class ContaCorrenteService implements ContaService{
 
     private final ContaCorrenteRepository contaCorrenteRepository;
 
-    public boolean cadastrarConta(String id) {
-        contaCorrenteRepository.save(new ContaCorrente(id, new BigDecimal(0)));
+    public boolean cadastrarConta(String id, double saldoInicial) {
+        contaCorrenteRepository.save(new ContaCorrente(id, new BigDecimal(saldoInicial)));
         return true;
     }
 
