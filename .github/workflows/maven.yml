@@ -22,7 +22,11 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: checkout to develop branch
-      run: git checkout develop
+    - name: check the directory
+      run: ls
+    - name: check the directory
+      run: ls ../
+    - name: check the directory
+      run: ls ../../
     - name: Build with Maven
       run: mvn clean install
