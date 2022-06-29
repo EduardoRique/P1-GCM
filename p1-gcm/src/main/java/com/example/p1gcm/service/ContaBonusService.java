@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ContaBonusService implements ContaService{
 
-    private final ContaBonusRepository contaBonusRepository;
+    private final ContaBonusRepsitory contaBonusRepository;
 
     public boolean cadastrarConta(String id, double saldoInicial) {
         contaBonusRepository.save(new ContaBonus(id, new BigDecimal(saldoInicial), 10));
