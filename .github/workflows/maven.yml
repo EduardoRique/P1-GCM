@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: check the directory
-      run: ls
+      run: ls p1-gcm/
     - name: check the directory
       run: ls ../
     - name: check the directory
