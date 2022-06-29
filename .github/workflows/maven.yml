@@ -22,7 +22,5 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: move to the correct directory
-      run: cd p1-gcm/
     - name: Build with Maven
-      run: mvn clean install
+      run: mvn clean install -f ./p1-gcm/pom.xml
