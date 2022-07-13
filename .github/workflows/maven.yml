@@ -25,9 +25,8 @@ jobs:
     - name: Build with Maven
       run: mvn clean install -f ./p1-gcm/pom.xml
     - name: Lint Code Base
-    -  run: cd /p1-gcm
-    -  uses: github/super-linter@v4
-    -  env:
+      uses: github/super-linter@v4
+      env:
         VALIDATE_ALL_CODEBASE: false
         DEFAULT_BRANCH: develop
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
