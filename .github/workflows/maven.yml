@@ -25,11 +25,12 @@ jobs:
     - name: Build with Maven
       run: mvn clean install -f ./p1-gcm/pom.xml
     - name: Lint Code Base
-      uses: github/super-linter@v4
-      env:
+    -  run: cd /p1-gcm
+    -  uses: github/super-linter@v4
+    -  env:
         VALIDATE_ALL_CODEBASE: false
-        DEFAULT_BRANCH: master
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        DEFAULT_BRANCH: develop
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Zip Release
       uses: TheDoctor0/zip-release@0.6.2
       with:
