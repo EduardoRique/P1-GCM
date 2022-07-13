@@ -27,7 +27,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install -f ./p1-gcm/pom.xml
+      run: mvn clean install -f ./pom.xml
     - name: Lint Code Base
       uses: github/super-linter@v4
       env:
